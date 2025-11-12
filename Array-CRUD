@@ -1,0 +1,80 @@
+package array;
+
+public class CRUD {
+    static int arr[] = new int[10];
+    static int size = 0;
+
+    static void insert(int index, int value) {
+        if (index > size) {
+            System.out.println("Array Index is Greater than size so can't insert...");
+            return;
+        }
+        if (arr.length == size) {
+            System.out.println("Array Full Can't Insert...");
+            return;
+        }
+        // TC O(N)
+        for (int i = size - 1; i >= index; i--) {
+            arr[i + 1] = arr[i];
+        }
+        arr[index] = value;
+        size++;
+        System.out.println("Element Added in Array");
+
+    }
+
+    static void remove(int index) {
+        if (index > size) {
+            System.out.println("Array Index is Greater than size so can't delete...");
+            return;
+        }
+        if (arr.length == 0) {
+            System.out.println("Array is Empty....");
+            return;
+        }
+        for (int i = index; i < size; i++) {
+            arr[i] = arr[i + 1];
+        }
+        arr[size - 1] = 0;
+        size--;
+
+    }
+
+    void search(int s) {
+        for (int i : arr) {
+            if (i == s) {
+                System.out.println("Found ");
+                return;
+            }
+        }
+        System.out.println("Not Found..");
+    }
+
+    void max() {
+        int max = Integer.MIN_VALUE;
+        for (int i : arr) {
+            if (i > max) {
+                max = i;
+            }
+
+        }
+        System.out.println("MAx is " + max);
+    }
+
+    static void print() {
+        for (int i : arr) {
+            System.out.println(i);
+        }
+    }
+
+    public static void main(String[] args) {
+        insert(0, 100);
+        insert(0, 200);
+        insert(0, 300);
+        insert(1, 1000);
+        print();
+        remove(0);
+        print();
+
+    }
+}
