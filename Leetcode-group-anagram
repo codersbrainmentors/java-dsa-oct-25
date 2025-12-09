@@ -1,0 +1,14 @@
+class Solution {
+    // Approach - 1 Brute Force
+    public List<List<String>> groupAnagrams(String[] strs) {
+        HashMap<String , List<String>> map = new HashMap<>();
+        // 1. Traverse the entire string array
+        for(String s : strs){ // O(N)
+            char word[] = s.toCharArray();
+            Arrays.sort(word); // L Log L
+            map.computeIfAbsent(new String(word), e->new ArrayList<>()).add(s);
+        }
+        return new ArrayList<>(map.values());
+
+    }
+}
