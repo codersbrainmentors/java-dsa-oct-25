@@ -1,0 +1,64 @@
+class Solution {
+    // Approach - 2 Two Pointor 
+    public int trap(int[] height) {
+    int left = 0;
+    int right = height.length-1;
+    int leftMax = 0;
+    int rightMax =0;
+    int totalWater = 0;
+    while(left<right){
+        int water = 0;
+        // Left pillar is smaller
+        if(height[left]< height[right]){
+            if(height[left]> leftMax){
+                leftMax = height[left];
+
+            }
+            else{
+                water = leftMax - height[left];
+            }
+
+            left++;
+        }
+        // right pillar is smaller
+        else{
+             if(height[right]> rightMax){
+                rightMax = height[right];
+
+            }
+            else{
+                 water = rightMax - height[right];
+            }
+            right--;
+        }
+        totalWater = totalWater + water;
+    }
+    return totalWater;
+    }
+
+    /* Approach - 1 Brute Force
+    public int trap(int[] height) {
+        int totalWater = 0;
+        // traverse the current pillar
+        for(int i = 0 ; i<height.length; i++){
+            int leftMax = 0;
+            // lookup from the current pillar to the left max
+            for(int j = 0; j<=i; j++){
+                // if(height[j]> leftMax){
+                //     leftMax = height[j];
+                // }
+               leftMax =  Math.max(leftMax, height[j]);
+            }
+             // lookup from the current pillar to the right max
+            int rightMax = 0;
+            for(int j = i; j<height.length; j++){
+                 if(height[j]> rightMax){
+                    rightMax = height[j];
+                }
+            }
+           int water =  Math.min(leftMax, rightMax) - height[i];
+           totalWater = totalWater + water;
+        }
+        return totalWater;
+    }*/
+}
