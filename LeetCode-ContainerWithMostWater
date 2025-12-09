@@ -1,0 +1,36 @@
+class Solution {
+    public int maxArea(int[] height) {
+        // Approach - 1 Brute Force Approach - TC O(N^2) SC O(1)
+        // Pick the first one and compare with all , and find out the min height and width and area
+        // and store the maxarea
+        // int maxArea = 0;
+        // for(int i = 0; i<height.length; i++){
+        //     for(int j = i +1 ; j<height.length; j++){
+        //         int h = Math.min(height[i], height[j]);
+        //         int w = j - i;
+        //         int area = h * w;
+        //         maxArea = Math.max(maxArea, area);
+        //     }
+        // }
+        // return maxArea;
+
+        // Approach - 2 Two Pointer Approach - TC O(N) SC O(1)
+        int left = 0;
+        int right = height.length-1;
+        int maxArea = 0;
+        while(left<right){
+            int h = Math.min(height[left], height[right]);
+            int w = right - left;
+            int area = h * w;
+            maxArea = Math.max(maxArea, area);
+            if(height[left]< height[right]){
+                left++;
+            }
+            else{
+                right--;
+            }
+        }
+        return maxArea;
+
+    }
+}
