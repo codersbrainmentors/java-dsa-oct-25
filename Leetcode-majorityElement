@@ -1,0 +1,31 @@
+class Solution {
+    // Brute Force
+    // public int majorityElement(int[] nums) {
+    //     int n = nums.length;
+    //     HashMap<Integer, Integer> map = new HashMap<>();
+    //     for(int num : nums){
+    //         map.put(num, map.getOrDefault(num,0)+1);
+    //         if(map.get(num)>n/2){
+    //             return num;
+    //         }
+    //     }
+    //     return -1;
+    // }
+    public int majorityElement(int[] nums) {
+    // Counting Method 
+        int king = 0;
+        int count = 0;
+        for(int num : nums){
+            if(count ==0){
+                king = num;
+            }
+            if(num == king){
+                count++;
+            }
+            else{
+                count--;
+            }
+        }
+        return king;
+    }
+}
