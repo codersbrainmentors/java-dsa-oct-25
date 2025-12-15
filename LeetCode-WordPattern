@@ -1,0 +1,41 @@
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+         String words[] = s.split(" ");
+         if(words.length != pattern.length()){
+            return false;
+         }
+        // Maintain 2 HashMap
+        HashMap<Character, String> charToWordMap = new HashMap<>();
+        HashMap<String , Character> wordToCharMap = new HashMap<>();
+       
+        for(int i = 0; i<pattern.length(); i++){
+            char patternSingleChar = pattern.charAt(i); // single char
+            String word = words[i]; // single word
+            // check char has the word
+            if(charToWordMap.containsKey(patternSingleChar)){
+                // key exist
+                if(!charToWordMap.get(patternSingleChar).equals(word)){
+                    return false;
+                }
+            }
+            else{
+                // if key not exist
+                charToWordMap.put(patternSingleChar, word);
+            }
+            // word to char map
+            if(wordToCharMap.containsKey(word)){
+                // key exist
+                if(!wordToCharMap.get(word).equals(patternSingleChar)){
+                    return false;
+                }
+            }
+            else{
+                // if key not exist
+                wordToCharMap.put( word, patternSingleChar);
+            }
+
+        }
+        return true;
+
+    }
+}
