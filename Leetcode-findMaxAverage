@@ -1,0 +1,20 @@
+class Solution {
+    // fixed window sliding approach
+    public double findMaxAverage(int[] nums, int k) {
+        // first K elements (sum)
+        int sum = 0;
+        int maxSum = 0;
+        for(int i = 0; i<k; i++){
+            sum = sum + nums[i];
+        }
+        maxSum = sum; 
+        // rem sum compute using sliding
+        for(int i = k ; i<nums.length; i++){
+            // next sum 
+            sum = sum - nums[i-k] + nums[i];
+            maxSum = Math.max(maxSum , sum);
+        }
+        return (double) maxSum/k;
+
+    }
+}
