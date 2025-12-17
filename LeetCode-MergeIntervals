@@ -1,0 +1,17 @@
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        // first sort the intervals based on start time
+        Arrays.sort(intervals, (a, b)->a[0]-b[0]);
+        List<int[]> newInterval = new ArrayList<>();
+        for(int[] interval : intervals){
+            if(newInterval.isEmpty() || newInterval.get(newInterval.size()-1)[1] < interval[0]){
+                newInterval.add(interval);
+            }
+            else{
+                // now overlapping
+                newInterval.get(newInterval.size()-1)[1] = Math.max(newInterval.get(newInterval.size()-1)[1], interval[1]);
+            }
+        }
+        return newInterval.toArray(new int[newInterval.size()][]);
+    }
+}
